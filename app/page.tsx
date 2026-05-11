@@ -93,57 +93,78 @@ export default function Home() {
             </div>
           </div>
 
-<div className="hidden md:flex justify-center">
-  <div className="w-[450px] h-[650px] rounded-[3rem] border border-zinc-800 bg-zinc-950 shadow-2xl overflow-hidden">
-  </div>
-</div>
-
-<div className="grid md:grid-cols-3 gap-6">
-
-  <div className="overflow-hidden rounded-3xl border border-zinc-800 group">
-    <img
-      src="/anubis.jpg"
-      alt="Anubis Tattoo"
-      className="w-full h-[500px] object-cover grayscale group-hover:scale-105 transition-all duration-500"
-    />
-  </div>
-
-  <div className="overflow-hidden rounded-3xl border border-zinc-800 group">
-    <img
-      src="/dragon.jpg"
-      alt="Dragon Tattoo"
-      className="w-full h-[500px] object-cover grayscale group-hover:scale-105 transition-all duration-500"
-    />
-  </div>
-
-  <div className="overflow-hidden rounded-3xl border border-zinc-800 group">
-    <img
-      src="/peces.jpg"
-      alt="peces Tattoo"
-      className="w-full h-[500px] object-cover grayscale group-hover:scale-105 transition-all duration-500"
-    />
-  </div>
-
-  <div className="overflow-hidden rounded-3xl border border-zinc-800 group">
-    <img
-      src="/mouth.jpg"
-      alt="Blackwork Tattoo"
-      className="w-full h-[500px] object-cover grayscale group-hover:scale-105 transition-all duration-500"
-    />
-  </div>
-
-  <div className="overflow-hidden rounded-3xl border border-zinc-800 group">
-    <img
-      src="/demon.jpg"
-      alt="Dark Tattoo"
-      className="w-full h-[500px] object-cover grayscale group-hover:scale-105 transition-all duration-500"
-    />
-  </div>
-
-</div>
+          <div className="hidden md:flex justify-center">
+            <div className="w-[450px] h-[650px] rounded-[3rem] border border-zinc-800 bg-zinc-950 shadow-2xl overflow-hidden">
+              <img
+                src="/anubis.jpg"
+                alt="Anubis Tattoo"
                 className="w-full h-full object-cover grayscale"
-              
-  
+              />
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* GALERÍA */}
+      <section className="py-24 px-6 border-t border-zinc-900">
+        <div className="max-w-7xl mx-auto">
+
+          <div className="mb-16 text-center">
+            <p className="text-zinc-500 tracking-[0.4em] text-sm mb-4">
+              GALERÍA
+            </p>
+
+            <h2 className="text-5xl font-black">
+              TRABAJOS
+              <br />
+              RECIENTES
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+
+            <div className="overflow-hidden rounded-3xl border border-zinc-800 group">
+              <img
+                src="/anubis.jpg"
+                alt="Anubis Tattoo"
+                className="w-full h-[500px] object-cover grayscale group-hover:scale-105 transition-all duration-500"
+              />
+            </div>
+
+            <div className="overflow-hidden rounded-3xl border border-zinc-800 group">
+              <img
+                src="/dragon.jpg"
+                alt="Dragon Tattoo"
+                className="w-full h-[500px] object-cover grayscale group-hover:scale-105 transition-all duration-500"
+              />
+            </div>
+
+            <div className="overflow-hidden rounded-3xl border border-zinc-800 group">
+              <img
+                src="/peces.jpg"
+                alt="Fish Tattoo"
+                className="w-full h-[500px] object-cover grayscale group-hover:scale-105 transition-all duration-500"
+              />
+            </div>
+
+            <div className="overflow-hidden rounded-3xl border border-zinc-800 group">
+              <img
+                src="/mouth.jpg"
+                alt="Blackwork Tattoo"
+                className="w-full h-[500px] object-cover grayscale group-hover:scale-105 transition-all duration-500"
+              />
+            </div>
+
+            <div className="overflow-hidden rounded-3xl border border-zinc-800 group">
+              <img
+                src="/demon.jpg"
+                alt="Dark Tattoo"
+                className="w-full h-[500px] object-cover grayscale group-hover:scale-105 transition-all duration-500"
+              />
+            </div>
+
+          </div>
         </div>
       </section>
 
