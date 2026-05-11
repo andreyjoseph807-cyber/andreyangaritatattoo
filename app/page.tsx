@@ -119,7 +119,7 @@ export default function Home() {
   <div className="overflow-hidden rounded-3xl border border-zinc-800 group">
     <img
       src="/peces.jpg"
-      alt="Fish Tattoo"
+      alt="peces Tattoo"
       className="w-full h-[500px] object-cover grayscale group-hover:scale-105 transition-all duration-500"
     />
   </div>
