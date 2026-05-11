@@ -95,7 +95,7 @@ export default function Home() {
 
           <div className="hidden md:flex justify-center">
             <div className="w-[450px] h-[650px] rounded-[3rem] border border-zinc-800 bg-zinc-950 shadow-2xl overflow-hidden">
-          <div>
+          </div>
                 <div className="grid md:grid-cols-3 gap-6">
 
   <div className="overflow-hidden rounded-3xl border border-zinc-800 group">
