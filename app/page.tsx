@@ -96,8 +96,11 @@ export default function Home() {
           <div className="hidden md:flex justify-center">
             <div className="w-[450px] h-[650px] rounded-[3rem] border border-zinc-800 bg-zinc-950 shadow-2xl overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1542727365-19732a80dcfd?q=80&w=1200&auto=format&fit=crop"
-                alt="Tattoo"
+                src="/anubis.jpg"
+src="/dragon.jpg"
+src="/peces.jpg"
+src="/mouth.jpg"
+src="/demon.jpg"
                 className="w-full h-full object-cover grayscale"
               />
             </div>
