@@ -177,7 +177,7 @@ export default function Home() {
 
           <div>
             <img
-              src="https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?q=80&w=1200&auto=format&fit=crop"
+              src="demon.jpg"
               alt="Tattoo artist"
               className="rounded-[2rem] border border-zinc-800 grayscale"
             />
