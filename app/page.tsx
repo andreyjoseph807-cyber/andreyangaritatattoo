@@ -290,7 +290,7 @@ export default function Home() {
 
             <p className="text-zinc-400 leading-relaxed text-lg mb-8">
               Soy Andrey Angarita, tatuador especializado en blackwork,
-              fine line y composición conceptual.
+              fine line y composición conceptual. Conmigo vas a encontrar un espacio de conifianza, donde podrás expresar tu idea y juntos crear un diseño único, con identidad y estetica profesional. Cada tatuaje es una obra de arte que muestra una huistoria, listo para hacer visible tu historia?
             </p>
 
             <a
