@@ -82,7 +82,6 @@ export default function Home() {
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
 
           <div className="flex items-center gap-4">
-            {/* ✅ LOGO REAL */}
             <img
               src="/logo.png"
               alt="Logo"
@@ -132,7 +131,7 @@ export default function Home() {
 
           <div>
 
-            {/* ✅ AQUÍ VA EL LOGO, NO LA FOTO */}
+            {/* LOGO */}
             <img
               src="/logo.png"
               alt="Logo"
@@ -178,7 +177,7 @@ export default function Home() {
 
           </div>
 
-          {/* ✅ FOTO GRANDE DEL HERO */}
+          {/* FOTO PRINCIPAL */}
           <div className="hidden md:flex justify-center">
             <div className="w-[450px] h-[650px] rounded-[3rem] border border-zinc-800 bg-zinc-950 shadow-2xl overflow-hidden">
 
@@ -220,7 +219,6 @@ export default function Home() {
 
           </div>
 
-          {/* ✅ GRID LIMPIO */}
           <div className="grid md:grid-cols-3 gap-6">
 
             {images.map((img, i) => (
@@ -265,7 +263,6 @@ export default function Home() {
 
           <div>
 
-            {/* ✅ EXISTE COMO JPG */}
             <img
               src="/demon.jpg"
               alt="Tattoo artist"
@@ -290,7 +287,11 @@ export default function Home() {
 
             <p className="text-zinc-400 leading-relaxed text-lg mb-8">
               Soy Andrey Angarita, tatuador especializado en blackwork,
-              fine line y composición conceptual. Conmigo vas a encontrar un espacio de conifianza, donde podrás expresar tu idea y juntos crear un diseño único, con identidad y estetica profesional. Cada tatuaje es una obra de arte que muestra una huistoria, listo para hacer visible tu historia?
+              fine line y composición conceptual. Conmigo vas a encontrar
+              un espacio de confianza, donde podrás expresar tu idea y
+              juntos crear un diseño único, con identidad y estética
+              profesional. Cada tatuaje es una obra de arte que muestra
+              una historia. ¿Listo para hacer visible tu historia?
             </p>
 
             <a
