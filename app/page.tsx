@@ -96,8 +96,8 @@ export default function Home() {
           <div className="hidden md:flex justify-center">
             <div className="w-[450px] h-[650px] rounded-[3rem] border border-zinc-800 bg-zinc-950 shadow-2xl overflow-hidden">
               <img
-                src="/anubis.jpg"
-                alt="Anubis Tattoo"
+                src="nueva foto.jpg"
+                alt="yo Tattoo"
                 className="w-full h-full object-cover grayscale"
               />
             </div>
@@ -123,6 +123,13 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
+            <div className="overflow-hidden rounded-3xl border border-zinc-800 group">
+  <img
+    src="/tu-nueva-foto.jpg"
+    alt="Nuevo Tattoo"
+    className="w-full h-[500px] object-cover grayscale group-hover:scale-105 transition-all duration-500"
+  />
+</div>md:grid-cols-3 lg:grid-cols-3 gap_6"
 
             <div className="overflow-hidden rounded-3xl border border-zinc-800 group">
               <img
@@ -177,7 +184,7 @@ export default function Home() {
 
           <div>
             <img
-              src="demon.jpg"
+              src="demon.png"
               alt="Tattoo artist"
               className="rounded-[2rem] border border-zinc-800 grayscale"
             />
