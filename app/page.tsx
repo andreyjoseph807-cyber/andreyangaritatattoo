@@ -105,7 +105,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center relative z-10">
 
           <div>
-            <img src="/nueva-foto.jpg" alt="yo Tattoo" className="w-32 mb-10 opacity-95" />
+            <img src="/yo-tattoo.jpg" alt="yo Tattoo" className="w-32 mb-10 opacity-95" />
 
             <p className="text-zinc-500 tracking-[0.5em] text-sm mb-4">
               BLACKWORK • FINELINE • CUSTOM
