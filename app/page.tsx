@@ -260,6 +260,57 @@ export default function Home() {
         </div>
       </section>
 
+{/* =========================
+              CONTACTO
+      ========================== */}
+<section
+  id="contacto"
+  className="relative z-30 py-24 px-6 border-t border-zinc-900"
+>
+  <div className="max-w-6xl mx-auto text-center">
+
+    <p className="text-zinc-500 tracking-[0.4em] text-sm mb-4">
+      CONTACTO
+    </p>
+
+    <h2 className="text-5xl font-black mb-10">
+      HABLEMOS
+    </h2>
+
+    <p className="text-zinc-400 text-lg mb-6">
+      Para cotizaciones, ideas o asesorías:
+    </p>
+
+    <a
+      href="mailto:andreyjoseph807@gmail.com"
+      className="text-white text-xl font-semibold hover:underline"
+    >
+      andreyjoseph807@gmail.com
+    </a>
+
+    <div className="mt-10 flex justify-center gap-6 flex-wrap">
+
+      <a
+        href="https://wa.me/573243144372"
+        target="_blank"
+        className="bg-white text-black px-8 py-4 rounded-2xl font-semibold hover:scale-105 transition"
+      >
+        WhatsApp
+      </a>
+
+      <a
+        href="https://www.instagram.com/andreyangarita_tattoo"
+        target="_blank"
+        className="border border-zinc-700 px-8 py-4 rounded-2xl hover:bg-zinc-900 transition"
+      >
+        Instagram
+      </a>
+
+    </div>
+
+  </div>
+</section>
+
       {/* =========================
               FOOTER
       ========================== */}
