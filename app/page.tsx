@@ -74,18 +74,22 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-black text-white overflow-hidden relative">
 
-      {/* PARTICLES */}
+      {/* =========================
+          PARTICLES (AHORA SÍ EN HERO)
+      ========================== */}
       <div className="absolute inset-0 z-0">
         <ParticlesBackground />
       </div>
 
-      {/* OVERLAY */}
+      {/* OVERLAY PARA OSCURECER Y DAR PROFUNDIDAD */}
       <div className="absolute inset-0 bg-black/40 z-10 pointer-events-none" />
 
-      {/* GLOW BACKGROUND */}
+      {/* BACKGROUND GLOW */}
       <div className="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-white/5 blur-[180px] rounded-full pointer-events-none z-20" />
 
-      {/* NAVBAR */}
+      {/* =========================
+                NAVBAR
+      ========================== */}
       <nav className="fixed top-0 left-0 w-full z-50 bg-black/60 backdrop-blur border-b border-zinc-900">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
 
@@ -106,8 +110,15 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* HERO */}
-      <section className="relative z-30 min-h-screen flex items-center px-6">
+      {/* =========================
+                HERO
+      ========================== */}
+      <section
+        id="inicio"
+        data-anim="hero"
+        ref={refs.hero}
+        className="relative z-30 min-h-screen flex items-center px-6"
+      >
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
 
           <div>
@@ -118,56 +129,88 @@ export default function Home() {
             </p>
 
             <h1 className="text-6xl md:text-8xl font-black leading-none mb-8">
-              TATUAJES<br />CON<br />PROPÓSITO.
+              TATUAJES
+              <br />
+              CON
+              <br />
+              PROPÓSITO.
             </h1>
 
             <p className="text-zinc-400 text-lg leading-relaxed max-w-xl mb-10">
               Cada diseño cuenta una historia. Creamos piezas únicas con identidad y estética profesional.
             </p>
-          </div>
 
-        </div>
-      </section>
-
-      {/* GALERÍA */}
-      <section className="relative z-30 py-24 px-6 border-t border-zinc-900">
-        <div className="max-w-7xl mx-auto">
-
-          <div className="text-center mb-16">
-            <p className="text-zinc-500 tracking-[0.4em] text-sm mb-4">GALERÍA</p>
-            <h2 className="text-5xl font-black">TRABAJOS RECIENTES</h2>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {images.map((img, i) => (
-              <div
-                key={i}
-                onClick={() => setSelected(i)}
-                className="relative group cursor-pointer"
+            <div className="flex flex-col sm:flex-row gap-4">
+              <a
+                href="https://wa.me/573243144372"
+                target="_blank"
+                className="bg-white text-black px-8 py-4 rounded-2xl font-semibold hover:scale-105 transition"
               >
+                WhatsApp
+              </a>
 
-                {/* 🔥 GLOW DETRÁS */}
-                <div className="absolute -inset-6 bg-white/10 blur-2xl opacity-0 group-hover:opacity-100 transition duration-500 rounded-3xl" />
+              <a
+                href="https://www.instagram.com/andreyangarita_tattoo"
+                target="_blank"
+                className="border border-zinc-700 px-8 py-4 rounded-2xl hover:bg-zinc-900 transition"
+              >
+                Instagram
+              </a>
+            </div>
+          </div>
 
-                {/* CARD */}
-                <div className="relative overflow-hidden rounded-3xl border border-zinc-800 group-hover:border-white/40 transition">
-
-                  <img
-                    src={img.src}
-                    alt={img.alt}
-                    className="w-full h-[500px] object-cover grayscale group-hover:scale-105 transition"
-                  />
-
-                </div>
-
-              </div>
-            ))}
+          <div className="hidden md:flex justify-center">
+            <div className="relative w-[450px] h-[650px] rounded-[3rem] border border-zinc-800 overflow-hidden">
+              <img
+                src="/yo-tattoo.jpg"
+                alt="Yo Tattoo"
+                className="w-full h-full object-cover grayscale"
+              />
+            </div>
           </div>
 
         </div>
       </section>
 
-      {/* SOBRE */}
+     {/* =========================
+              GALERÍA
+      ========================== */}
+<section className="relative z-30 py-24 px-6 border-t border-zinc-900">
+  <div className="max-w-7xl mx-auto">
+
+    <div className="text-center mb-16">
+      <p className="text-zinc-500 tracking-[0.4em] text-sm mb-4">GALERÍA</p>
+      <h2 className="text-5xl font-black">TRABAJOS RECIENTES</h2>
+    </div>
+
+    <div className="grid md:grid-cols-3 gap-6">
+      {images.map((img, i) => (
+        <div
+          key={i}
+          onClick={() => setSelected(i)}
+          className="relative group cursor-pointer overflow-hidden rounded-3xl border border-zinc-800 transition"
+        >
+
+          {/* 🔥 GLOW DETRÁS */}
+          <div className="absolute -inset-6 bg-white/10 blur-2xl opacity-0 group-hover:opacity-100 transition duration-500 rounded-3xl" />
+
+          {/* IMAGEN */}
+          <img
+            src={img.src}
+            alt={img.alt}
+            className="relative w-full h-[500px] object-cover grayscale group-hover:scale-105 transition"
+          />
+
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+      {/* =========================
+              SOBRE
+      ========================== */}
       <section className="relative z-30 py-32 px-6 border-t border-zinc-900">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-20">
 
@@ -176,28 +219,40 @@ export default function Home() {
           <div>
             <h2 className="text-5xl font-black mb-8">ARTE. DISCIPLINA. PASIÓN.</h2>
             <p className="text-zinc-400 leading-relaxed">
-              Soy tatuador especializado en blackwork y fine line.
-              Mi enfoque es crear tatuajes personalizados con identidad y significado.
+              Soy tatuador especializado en blackwork y fine line. 
+
+              Mi enfoque es crear tatuajes personalizados que reflejen la identidad de cada cliente, combinando estética y significado en cada diseño.
+              
+              Mi compromiso es ofrecer un servicio profesional, seguro y de alta calidad, transformando ideas en arte corporal con propósito.
+            
             </p>
           </div>
 
         </div>
       </section>
 
-      {/* SERVICIOS */}
+      {/* =========================
+              SERVICIOS
+      ========================== */}
       <section className="relative z-30 py-32 px-6 border-t border-zinc-900 bg-zinc-950">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
 
           <div className="border border-zinc-800 p-10 rounded-3xl">
             <h3 className="text-3xl font-bold mb-4">Cotizaciones</h3>
-            <a href="https://wa.me/573243144372" className="bg-white text-black px-6 py-3 rounded-xl inline-block">
+            <a
+              href="https://wa.me/573243144372"
+              className="bg-white text-black px-6 py-3 rounded-xl inline-block"
+            >
               Cotizar
             </a>
           </div>
 
           <div className="border border-zinc-800 p-10 rounded-3xl">
             <h3 className="text-3xl font-bold mb-4">Asesorías</h3>
-            <a href="https://wa.me/573243144372" className="bg-white text-black px-6 py-3 rounded-xl inline-block">
+            <a
+              href="https://wa.me/573243144372"
+              className="bg-white text-black px-6 py-3 rounded-xl inline-block"
+            >
               Asesoría
             </a>
           </div>
@@ -205,7 +260,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FOOTER */}
+      {/* =========================
+              FOOTER
+      ========================== */}
       <footer className="relative z-30 py-14 border-t border-zinc-900 text-center text-zinc-500">
         Andrey Angarita Tattoo
       </footer>
