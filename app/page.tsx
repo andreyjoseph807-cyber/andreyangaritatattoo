@@ -213,7 +213,12 @@ export default function Home() {
           <div>
             <h2 className="text-5xl font-black mb-8">ARTE. DISCIPLINA. PASIÓN.</h2>
             <p className="text-zinc-400 leading-relaxed">
-              Soy tatuador especializado en blackwork y fine line.
+              Soy tatuador especializado en blackwork y fine line. 
+
+              Mi enfoque es crear tatuajes personalizados que reflejen la identidad de cada cliente, combinando estética y significado en cada diseño.
+              
+              Mi compromiso es ofrecer un servicio profesional, seguro y de alta calidad, transformando ideas en arte corporal con propósito.
+            
             </p>
           </div>
 
