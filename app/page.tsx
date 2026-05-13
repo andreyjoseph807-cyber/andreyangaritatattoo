@@ -1,17 +1,18 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import ParticlesBackground from "./components/ParticlesBackground";
 
 export default function Home() {
   const [selected, setSelected] = useState<number | null>(null);
   const [visible, setVisible] = useState<Record<string, boolean>>({});
 
   const refs = {
-    hero: useRef(null),
-    gallery: useRef(null),
-    about: useRef(null),
-    services: useRef(null),
-    footer: useRef(null),
+    hero: useRef<HTMLElement | null>(null),
+    gallery: useRef<HTMLElement | null>(null),
+    about: useRef<HTMLElement | null>(null),
+    services: useRef<HTMLElement | null>(null),
+    footer: useRef<HTMLElement | null>(null),
   };
 
   const images = [
@@ -45,9 +46,9 @@ export default function Home() {
     window.addEventListener("keydown", handleKey);
 
     return () => window.removeEventListener("keydown", handleKey);
-  });
+  }, [selected]);
 
-  // 🍏 APPLE STYLE SCROLL ANIMATIONS
+  // ANIMACIONES SCROLL
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -76,6 +77,9 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-black text-white overflow-hidden relative">
+      
+      {/* BACKGROUND GLOW */}
+      <div className="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-white/5 blur-[180px] rounded-full pointer-events-none" />
 
       {/* NAVBAR */}
       <nav className="fixed top-0 left-0 w-full z-50 bg-black/60 backdrop-blur border-b border-zinc-900">
@@ -131,7 +135,6 @@ export default function Home() {
 
           <div>
 
-            {/* LOGO */}
             <img
               src="/logo.png"
               alt="Logo"
@@ -160,15 +163,17 @@ export default function Home() {
               <a
                 href="https://wa.me/573243144372"
                 target="_blank"
-                className="bg-white text-black px-8 py-4 rounded-2xl font-semibold hover:scale-105 transition-all duration-300"
+                rel="noreferrer"
+                className="bg-white text-black px-8 py-4 rounded-2xl font-semibold hover:scale-105 hover:bg-zinc-200 transition-all duration-300 shadow-2xl"
               >
                 WhatsApp
               </a>
 
               <a
-                href="https://www.instagram.com/andreyangarita_tattoo?igsh=MW93OG1wcThwZHUzOA%3D%3D&utm_source=qr"
+                href="https://www.instagram.com/andreyangarita_tattoo"
                 target="_blank"
-                className="border border-zinc-700 px-8 py-4 rounded-2xl hover:bg-zinc-900 transition-all duration-300"
+                rel="noreferrer"
+                className="border border-zinc-700 px-8 py-4 rounded-2xl hover:bg-zinc-900 hover:border-white transition-all duration-300"
               >
                 Instagram
               </a>
@@ -179,12 +184,14 @@ export default function Home() {
 
           {/* FOTO PRINCIPAL */}
           <div className="hidden md:flex justify-center">
-            <div className="w-[450px] h-[650px] rounded-[3rem] border border-zinc-800 bg-zinc-950 shadow-2xl overflow-hidden">
+            <div className="relative w-[450px] h-[650px] rounded-[3rem] border border-zinc-800 bg-zinc-950 shadow-2xl overflow-hidden group">
+
+              <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-all duration-700 z-10" />
 
               <img
                 src="/yo-tattoo.jpg"
                 alt="Yo Tattoo"
-                className="w-full h-full object-cover grayscale"
+                className="w-full h-full object-cover grayscale group-hover:scale-105 transition-all duration-700"
               />
 
             </div>
@@ -225,14 +232,14 @@ export default function Home() {
               <div
                 key={i}
                 onClick={() => setSelected(i)}
-                className="relative overflow-hidden rounded-3xl border border-zinc-800 group cursor-pointer transition-all duration-500 hover:border-white/40"
+                className="relative overflow-hidden rounded-3xl border border-zinc-800 group cursor-pointer transition-all duration-500 hover:border-white/40 hover:-translate-y-2"
               >
 
                 {/* glow */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500 bg-white/5 blur-2xl" />
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500 bg-white/5 blur-2xl z-10" />
 
                 {/* light sweep */}
-                <div className="absolute -inset-10 opacity-0 group-hover:opacity-20 transition-all duration-700 bg-gradient-to-r from-transparent via-white to-transparent rotate-12" />
+                <div className="absolute -inset-10 opacity-0 group-hover:opacity-20 transition-all duration-700 bg-gradient-to-r from-transparent via-white to-transparent rotate-12 z-10" />
 
                 <img
                   src={img.src}
@@ -266,7 +273,7 @@ export default function Home() {
             <img
               src="/demon.jpg"
               alt="Tattoo artist"
-              className="rounded-[2rem] border border-zinc-800 grayscale"
+              className="rounded-[2rem] border border-zinc-800 grayscale hover:scale-[1.02] transition-all duration-700"
             />
 
           </div>
@@ -296,7 +303,7 @@ export default function Home() {
 
             <a
               href="mailto:Andreyjoseph807@gmail.com"
-              className="inline-block border border-zinc-700 px-8 py-4 rounded-2xl hover:bg-zinc-900 transition-all duration-300"
+              className="inline-block border border-zinc-700 px-8 py-4 rounded-2xl hover:bg-zinc-900 hover:border-white transition-all duration-300"
             >
               Contactarme
             </a>
@@ -335,7 +342,7 @@ export default function Home() {
 
           <div className="grid md:grid-cols-2 gap-8">
 
-            <div className="border border-zinc-800 rounded-[2rem] p-10 hover:border-white transition-all duration-300">
+            <div className="border border-zinc-800 rounded-[2rem] p-10 hover:border-white hover:-translate-y-2 transition-all duration-300 bg-black/30 backdrop-blur">
 
               <h3 className="text-3xl font-bold mb-6">
                 Cotizaciones
@@ -348,6 +355,7 @@ export default function Home() {
               <a
                 href="https://wa.me/573243144372"
                 target="_blank"
+                rel="noreferrer"
                 className="bg-white text-black px-8 py-4 rounded-2xl inline-block font-semibold hover:scale-105 transition-all duration-300"
               >
                 Cotizar ahora
@@ -355,7 +363,7 @@ export default function Home() {
 
             </div>
 
-            <div className="border border-zinc-800 rounded-[2rem] p-10 hover:border-white transition-all duration-300">
+            <div className="border border-zinc-800 rounded-[2rem] p-10 hover:border-white hover:-translate-y-2 transition-all duration-300 bg-black/30 backdrop-blur">
 
               <h3 className="text-3xl font-bold mb-6">
                 Asesorías
@@ -368,6 +376,7 @@ export default function Home() {
               <a
                 href="https://wa.me/573243144372"
                 target="_blank"
+                rel="noreferrer"
                 className="bg-white text-black px-8 py-4 rounded-2xl inline-block font-semibold hover:scale-105 transition-all duration-300"
               >
                 Solicitar asesoría
@@ -435,14 +444,14 @@ export default function Home() {
             {/* CONTROLS */}
             <button
               onClick={prevImage}
-              className="absolute left-4 top-1/2 -translate-y-1/2 text-white text-3xl"
+              className="absolute left-4 top-1/2 -translate-y-1/2 text-white text-5xl hover:scale-125 transition-all duration-300"
             >
               ‹
             </button>
 
             <button
               onClick={nextImage}
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-white text-3xl"
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-white text-5xl hover:scale-125 transition-all duration-300"
             >
               ›
             </button>
@@ -450,7 +459,7 @@ export default function Home() {
             {/* CLOSE */}
             <button
               onClick={closeModal}
-              className="absolute top-4 right-4 text-white text-2xl"
+              className="absolute top-4 right-4 text-white text-3xl hover:rotate-90 transition-all duration-300"
             >
               ✕
             </button>
