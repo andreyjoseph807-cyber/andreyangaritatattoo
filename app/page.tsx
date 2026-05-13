@@ -111,66 +111,102 @@ export default function Home() {
       </nav>
 
       {/* =========================
-                HERO
+                HERO PREMIUM
       ========================== */}
-      <section
-        id="inicio"
-        data-anim="hero"
-        ref={refs.hero}
-        className="relative z-30 min-h-screen flex items-center px-6"
-      >
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
+<section
+  id="inicio"
+  data-anim="hero"
+  ref={refs.hero}
+  className="relative z-30 min-h-screen flex items-center px-6"
+>
 
-          <div>
-            <img src="/logo.png" alt="Logo" className="w-32 mb-10 opacity-95" />
+  {/* LIGHT LAYER (profundidad) */}
+  <div className="absolute inset-0 bg-gradient-to-b from-black via-zinc-950 to-black opacity-90" />
 
-            <p className="text-zinc-500 tracking-[0.5em] text-sm mb-4">
-              BLACKWORK • FINELINE • CUSTOM
-            </p>
+  {/* SPOTLIGHT EFFECT */}
+  <div className="absolute inset-0 pointer-events-none">
+    <div className="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-white/5 blur-[180px] rounded-full" />
+  </div>
 
-            <h1 className="text-6xl md:text-8xl font-black leading-none mb-8">
-              TATUAJES
-              <br />
-              CON
-              <br />
-              PROPÓSITO.
-            </h1>
+  <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center relative z-10">
 
-            <p className="text-zinc-400 text-lg leading-relaxed max-w-xl mb-10">
-              Cada diseño cuenta una historia. Creamos piezas únicas con identidad y estética profesional.
-            </p>
+    {/* ================= LEFT CONTENT ================= */}
+    <div className="space-y-6">
 
-            <div className="flex flex-col sm:flex-row gap-4">
-              <a
-                href="https://wa.me/573243144372"
-                target="_blank"
-                className="bg-white text-black px-8 py-4 rounded-2xl font-semibold hover:scale-105 transition"
-              >
-                WhatsApp
-              </a>
+      {/* LOGO */}
+      <img
+        src="/logo.png"
+        alt="Logo"
+        className="w-28 opacity-95 animate-[fadeIn_1s_ease-in-out]"
+      />
 
-              <a
-                href="https://www.instagram.com/andreyangarita_tattoo"
-                target="_blank"
-                className="border border-zinc-700 px-8 py-4 rounded-2xl hover:bg-zinc-900 transition"
-              >
-                Instagram
-              </a>
-            </div>
-          </div>
+      {/* TAGLINE */}
+      <p className="text-zinc-500 tracking-[0.6em] text-xs uppercase">
+        Blackwork • Fineline • Custom Ink
+      </p>
 
-          <div className="hidden md:flex justify-center">
-            <div className="relative w-[450px] h-[650px] rounded-[3rem] border border-zinc-800 overflow-hidden">
-              <img
-                src="/yo-tattoo.jpg"
-                alt="Yo Tattoo"
-                className="w-full h-full object-cover grayscale"
-              />
-            </div>
-          </div>
+      {/* TITLE */}
+      <h1 className="text-6xl md:text-8xl font-black leading-[0.95]">
+        <span className="block">TATUAJES</span>
+        <span className="block text-white/90">CON</span>
+        <span className="block text-zinc-300">PROPÓSITO.</span>
+      </h1>
 
-        </div>
-      </section>
+      {/* DESCRIPTION */}
+      <p className="text-zinc-400 text-lg leading-relaxed max-w-xl">
+        Diseños que no solo se ven bien, sino que construyen identidad.
+        Cada pieza es un proceso artístico personalizado desde cero.
+      </p>
+
+      {/* CTA BUTTONS */}
+      <div className="flex flex-col sm:flex-row gap-4 pt-2">
+
+        <a
+          href="https://wa.me/573243144372"
+          target="_blank"
+          className="bg-white text-black px-8 py-4 rounded-2xl font-semibold
+                     hover:scale-[1.03] active:scale-95 transition-all duration-300 shadow-xl"
+        >
+          Reservar por WhatsApp
+        </a>
+
+        <a
+          href="https://www.instagram.com/andreyangarita_tattoo"
+          target="_blank"
+          className="border border-zinc-700 px-8 py-4 rounded-2xl
+                     hover:bg-white/5 hover:border-white transition-all duration-300"
+        >
+          Ver Instagram
+        </a>
+
+      </div>
+
+    </div>
+
+    {/* ================= RIGHT VISUAL ================= */}
+    <div className="hidden md:flex justify-center">
+
+      <div className="relative w-[460px] h-[660px] rounded-[3rem] overflow-hidden border border-zinc-800 shadow-2xl group">
+
+        {/* LIGHT OVERLAY */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-white/5 via-transparent to-black/40 opacity-70 group-hover:opacity-100 transition" />
+
+        {/* IMAGE */}
+        <img
+          src="/yo-tattoo.jpg"
+          alt="Yo Tattoo"
+          className="w-full h-full object-cover grayscale group-hover:scale-105 transition duration-700"
+        />
+
+        {/* BORDER GLOW */}
+        <div className="absolute inset-0 rounded-[3rem] ring-1 ring-white/10 group-hover:ring-white/30 transition" />
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
 
      {/* =========================
               GALERÍA
