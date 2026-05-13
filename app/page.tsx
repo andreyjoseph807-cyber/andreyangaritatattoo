@@ -64,6 +64,35 @@ export default function Home() {
       { threshold: 0.15 }
     );
 
+    useEffect(() => {
+  const audio = document.getElementById(
+    "ambient-audio"
+  ) as HTMLAudioElement | null;
+
+  const enableAudio = () => {
+    if (audio) {
+      audio.muted = false;
+      audio.volume = 0.35;
+
+      audio.play().catch(() => {});
+    }
+
+    window.removeEventListener("click", enableAudio);
+    window.removeEventListener("mousemove", enableAudio);
+    window.removeEventListener("scroll", enableAudio);
+  };
+
+  window.addEventListener("click", enableAudio);
+  window.addEventListener("mousemove", enableAudio);
+  window.addEventListener("scroll", enableAudio);
+
+  return () => {
+    window.removeEventListener("click", enableAudio);
+    window.removeEventListener("mousemove", enableAudio);
+    window.removeEventListener("scroll", enableAudio);
+  };
+}, []);
+
     Object.values(refs).forEach((ref) => {
       if (ref.current) observer.observe(ref.current);
     });
@@ -80,11 +109,11 @@ export default function Home() {
 <div className="absolute inset-0 z-0">
   <ParticlesBackground />
 
-  <audio
+ <audio
+  id="ambient-audio"
   autoPlay
   loop
-  controls
-  className="fixed bottom-5 right-5 z-[999] opacity-70 hover:opacity-100"
+  muted
 >
   <source src="/ambient.mp3" type="audio/mpeg" />
 </audio> 
