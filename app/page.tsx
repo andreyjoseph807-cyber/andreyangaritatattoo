@@ -44,11 +44,9 @@ export default function Home() {
     };
 
     window.addEventListener("keydown", handleKey);
-
     return () => window.removeEventListener("keydown", handleKey);
   }, [selected]);
 
-  // ANIMACIONES SCROLL
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -63,9 +61,7 @@ export default function Home() {
           }
         });
       },
-      {
-        threshold: 0.15,
-      }
+      { threshold: 0.15 }
     );
 
     Object.values(refs).forEach((ref) => {
@@ -77,69 +73,55 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-black text-white overflow-hidden relative">
-      
-      {/* BACKGROUND GLOW */}
-      <div className="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-white/5 blur-[180px] rounded-full pointer-events-none" />
 
-      {/* NAVBAR */}
+      {/* =========================
+          PARTICLES BACKGROUND
+      ========================== */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <ParticlesBackground />
+      </div>
+
+      {/* BACKGROUND GLOW */}
+      <div className="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-white/5 blur-[180px] rounded-full pointer-events-none z-10" />
+
+      {/* =========================
+                NAVBAR
+      ========================== */}
       <nav className="fixed top-0 left-0 w-full z-50 bg-black/60 backdrop-blur border-b border-zinc-900">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
 
           <div className="flex items-center gap-4">
-            <img
-              src="/logo.png"
-              alt="Logo"
-              className="w-10 h-10 object-contain"
-            />
-
+            <img src="/logo.png" alt="Logo" className="w-10 h-10 object-contain" />
             <h1 className="tracking-[0.3em] text-sm font-semibold">
               ANDREY ANGARITA TATTOO
             </h1>
           </div>
 
           <div className="hidden md:flex gap-8 text-sm text-zinc-400">
-            <a href="#inicio" className="hover:text-white transition">
-              Inicio
-            </a>
-
-            <a href="#sobre" className="hover:text-white transition">
-              Sobre mí
-            </a>
-
-            <a href="#servicios" className="hover:text-white transition">
-              Servicios
-            </a>
-
-            <a href="#contacto" className="hover:text-white transition">
-              Contacto
-            </a>
+            <a href="#inicio" className="hover:text-white transition">Inicio</a>
+            <a href="#sobre" className="hover:text-white transition">Sobre mí</a>
+            <a href="#servicios" className="hover:text-white transition">Servicios</a>
+            <a href="#contacto" className="hover:text-white transition">Contacto</a>
           </div>
 
         </div>
       </nav>
 
-      {/* HERO */}
+      {/* =========================
+                HERO
+      ========================== */}
       <section
         id="inicio"
         data-anim="hero"
         ref={refs.hero}
-        className={`relative z-10 min-h-screen flex items-center px-6 transition-all duration-1000 ${
-          visible.hero
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-10"
-        }`}
+        className="relative z-10 min-h-screen flex items-center px-6"
       >
         <div className="absolute inset-0 bg-gradient-to-b from-black via-zinc-950 to-black opacity-90" />
 
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center relative z-10">
 
           <div>
-
-            <img
-              src="/logo.png"
-              alt="Logo"
-              className="w-32 mb-10 opacity-95"
-            />
+            <img src="/logo.png" alt="Logo" className="w-32 mb-10 opacity-95" />
 
             <p className="text-zinc-500 tracking-[0.5em] text-sm mb-4">
               BLACKWORK • FINELINE • CUSTOM
@@ -154,17 +136,14 @@ export default function Home() {
             </h1>
 
             <p className="text-zinc-400 text-lg leading-relaxed max-w-xl mb-10">
-              Cada diseño cuenta una historia.
-              Creamos piezas únicas con identidad, composición y estética profesional.
+              Cada diseño cuenta una historia. Creamos piezas únicas con identidad y estética profesional.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
-
               <a
                 href="https://wa.me/573243144372"
                 target="_blank"
-                rel="noreferrer"
-                className="bg-white text-black px-8 py-4 rounded-2xl font-semibold hover:scale-105 hover:bg-zinc-200 transition-all duration-300 shadow-2xl"
+                className="bg-white text-black px-8 py-4 rounded-2xl font-semibold hover:scale-105 transition"
               >
                 WhatsApp
               </a>
@@ -172,300 +151,140 @@ export default function Home() {
               <a
                 href="https://www.instagram.com/andreyangarita_tattoo"
                 target="_blank"
-                rel="noreferrer"
-                className="border border-zinc-700 px-8 py-4 rounded-2xl hover:bg-zinc-900 hover:border-white transition-all duration-300"
+                className="border border-zinc-700 px-8 py-4 rounded-2xl hover:bg-zinc-900 transition"
               >
                 Instagram
               </a>
-
             </div>
-
           </div>
 
-          {/* FOTO PRINCIPAL */}
           <div className="hidden md:flex justify-center">
-            <div className="relative w-[450px] h-[650px] rounded-[3rem] border border-zinc-800 bg-zinc-950 shadow-2xl overflow-hidden group">
-
-              <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-all duration-700 z-10" />
-
+            <div className="relative w-[450px] h-[650px] rounded-[3rem] border border-zinc-800 overflow-hidden">
               <img
                 src="/yo-tattoo.jpg"
                 alt="Yo Tattoo"
-                className="w-full h-full object-cover grayscale group-hover:scale-105 transition-all duration-700"
+                className="w-full h-full object-cover grayscale"
               />
-
             </div>
           </div>
 
         </div>
       </section>
 
-      {/* GALERÍA */}
+      {/* =========================
+              GALERÍA
+      ========================== */}
       <section
         data-anim="gallery"
         ref={refs.gallery}
-        className={`relative z-10 py-24 px-6 border-t border-zinc-900 transition-all duration-1000 ${
-          visible.gallery
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-10"
-        }`}
+        className="relative z-10 py-24 px-6 border-t border-zinc-900"
       >
         <div className="max-w-7xl mx-auto">
 
-          <div className="mb-16 text-center">
-
-            <p className="text-zinc-500 tracking-[0.4em] text-sm mb-4">
-              GALERÍA
-            </p>
-
-            <h2 className="text-5xl font-black">
-              TRABAJOS
-              <br />
-              RECIENTES
-            </h2>
-
+          <div className="text-center mb-16">
+            <p className="text-zinc-500 tracking-[0.4em] text-sm mb-4">GALERÍA</p>
+            <h2 className="text-5xl font-black">TRABAJOS RECIENTES</h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
-
             {images.map((img, i) => (
               <div
                 key={i}
                 onClick={() => setSelected(i)}
-                className="relative overflow-hidden rounded-3xl border border-zinc-800 group cursor-pointer transition-all duration-500 hover:border-white/40 hover:-translate-y-2"
+                className="cursor-pointer overflow-hidden rounded-3xl border border-zinc-800 hover:border-white/40 transition"
               >
-
-                {/* glow */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500 bg-white/5 blur-2xl z-10" />
-
-                {/* light sweep */}
-                <div className="absolute -inset-10 opacity-0 group-hover:opacity-20 transition-all duration-700 bg-gradient-to-r from-transparent via-white to-transparent rotate-12 z-10" />
-
                 <img
                   src={img.src}
                   alt={img.alt}
-                  className="relative w-full h-[500px] object-cover grayscale group-hover:scale-105 transition-all duration-500"
+                  className="w-full h-[500px] object-cover grayscale hover:scale-105 transition"
                 />
-
               </div>
             ))}
-
           </div>
 
         </div>
       </section>
 
-      {/* SOBRE */}
+      {/* =========================
+              SOBRE
+      ========================== */}
       <section
         id="sobre"
         data-anim="about"
         ref={refs.about}
-        className={`relative z-10 py-32 px-6 border-t border-zinc-900 transition-all duration-1000 ${
-          visible.about
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-10"
-        }`}
+        className="relative z-10 py-32 px-6 border-t border-zinc-900"
       >
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-20 items-center">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-20">
+
+          <img src="/demon.jpg" className="rounded-3xl grayscale" />
 
           <div>
-
-            <img
-              src="/demon.jpg"
-              alt="Tattoo artist"
-              className="rounded-[2rem] border border-zinc-800 grayscale hover:scale-[1.02] transition-all duration-700"
-            />
-
-          </div>
-
-          <div>
-
-            <p className="text-zinc-500 tracking-[0.4em] text-sm mb-4">
-              SOBRE MÍ
+            <h2 className="text-5xl font-black mb-8">ARTE. DISCIPLINA. PASIÓN.</h2>
+            <p className="text-zinc-400 leading-relaxed">
+              Soy tatuador especializado en blackwork y fine line.
             </p>
-
-            <h2 className="text-5xl font-black mb-8">
-              ARTE.
-              <br />
-              DISCIPLINA.
-              <br />
-              PASIÓN.
-            </h2>
-
-            <p className="text-zinc-400 leading-relaxed text-lg mb-8">
-              Soy Andrey Angarita, tatuador especializado en blackwork,
-              fine line y composición conceptual. Conmigo vas a encontrar
-              un espacio de confianza, donde podrás expresar tu idea y
-              juntos crear un diseño único, con identidad y estética
-              profesional. Cada tatuaje es una obra de arte que muestra
-              una historia. ¿Listo para hacer visible tu historia?
-            </p>
-
-            <a
-              href="mailto:Andreyjoseph807@gmail.com"
-              className="inline-block border border-zinc-700 px-8 py-4 rounded-2xl hover:bg-zinc-900 hover:border-white transition-all duration-300"
-            >
-              Contactarme
-            </a>
-
           </div>
 
         </div>
       </section>
 
-      {/* SERVICIOS */}
+      {/* =========================
+              SERVICIOS
+      ========================== */}
       <section
         id="servicios"
         data-anim="services"
         ref={refs.services}
-        className={`relative z-10 py-32 px-6 border-t border-zinc-900 bg-zinc-950 transition-all duration-1000 ${
-          visible.services
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-10"
-        }`}
+        className="relative z-10 py-32 px-6 border-t border-zinc-900 bg-zinc-950"
       >
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
 
-          <div className="text-center mb-20">
-
-            <p className="text-zinc-500 tracking-[0.4em] text-sm mb-4">
-              SERVICIOS
-            </p>
-
-            <h2 className="text-5xl font-black">
-              ¿CÓMO PUEDO
-              <br />
-              AYUDARTE?
-            </h2>
-
+          <div className="border border-zinc-800 p-10 rounded-3xl">
+            <h3 className="text-3xl font-bold mb-4">Cotizaciones</h3>
+            <a
+              href="https://wa.me/573243144372"
+              className="bg-white text-black px-6 py-3 rounded-xl inline-block"
+            >
+              Cotizar
+            </a>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-
-            <div className="border border-zinc-800 rounded-[2rem] p-10 hover:border-white hover:-translate-y-2 transition-all duration-300 bg-black/30 backdrop-blur">
-
-              <h3 className="text-3xl font-bold mb-6">
-                Cotizaciones
-              </h3>
-
-              <p className="text-zinc-400 mb-10 leading-relaxed">
-                Cuéntame tu idea y recibe una cotización personalizada.
-              </p>
-
-              <a
-                href="https://wa.me/573243144372"
-                target="_blank"
-                rel="noreferrer"
-                className="bg-white text-black px-8 py-4 rounded-2xl inline-block font-semibold hover:scale-105 transition-all duration-300"
-              >
-                Cotizar ahora
-              </a>
-
-            </div>
-
-            <div className="border border-zinc-800 rounded-[2rem] p-10 hover:border-white hover:-translate-y-2 transition-all duration-300 bg-black/30 backdrop-blur">
-
-              <h3 className="text-3xl font-bold mb-6">
-                Asesorías
-              </h3>
-
-              <p className="text-zinc-400 mb-10 leading-relaxed">
-                Te ayudo a construir el concepto perfecto para tu tatuaje.
-              </p>
-
-              <a
-                href="https://wa.me/573243144372"
-                target="_blank"
-                rel="noreferrer"
-                className="bg-white text-black px-8 py-4 rounded-2xl inline-block font-semibold hover:scale-105 transition-all duration-300"
-              >
-                Solicitar asesoría
-              </a>
-
-            </div>
-
+          <div className="border border-zinc-800 p-10 rounded-3xl">
+            <h3 className="text-3xl font-bold mb-4">Asesorías</h3>
+            <a
+              href="https://wa.me/573243144372"
+              className="bg-white text-black px-6 py-3 rounded-xl inline-block"
+            >
+              Asesoría
+            </a>
           </div>
 
         </div>
       </section>
 
-      {/* FOOTER */}
+      {/* =========================
+              FOOTER
+      ========================== */}
       <footer
         id="contacto"
         data-anim="footer"
         ref={refs.footer}
-        className={`relative z-10 border-t border-zinc-900 py-14 px-6 transition-all duration-1000 ${
-          visible.footer
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-10"
-        }`}
+        className="relative z-10 py-14 border-t border-zinc-900 text-center text-zinc-500"
       >
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between gap-10 items-center">
-
-          <div>
-            <img
-              src="/logo.png"
-              alt="Logo"
-              className="w-20 mb-4 opacity-80"
-            />
-
-            <p className="text-zinc-500">
-              Andrey Angarita Tattoo
-            </p>
-          </div>
-
-          <div className="text-zinc-500 text-center md:text-right">
-            <p>Andreyjoseph807@gmail.com</p>
-            <p className="mt-2">andreyangaritatattoo.com</p>
-          </div>
-
-        </div>
+        Andrey Angarita Tattoo
       </footer>
 
-      {/* LIGHTBOX */}
+      {/* =========================
+              LIGHTBOX
+      ========================== */}
       {selected !== null && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center">
+          <div className="absolute inset-0 bg-black/90" onClick={closeModal} />
 
-          {/* BACKDROP */}
-          <div
-            className="absolute inset-0 bg-black/90 backdrop-blur-xl"
-            onClick={closeModal}
+          <img
+            src={images[selected].src}
+            className="max-w-5xl w-full z-10"
           />
-
-          {/* IMAGE */}
-          <div className="relative z-10 max-w-5xl w-full px-6">
-
-            <img
-              src={images[selected].src}
-              alt={images[selected].alt}
-              className="w-full max-h-[80vh] object-contain rounded-2xl"
-            />
-
-            {/* CONTROLS */}
-            <button
-              onClick={prevImage}
-              className="absolute left-4 top-1/2 -translate-y-1/2 text-white text-5xl hover:scale-125 transition-all duration-300"
-            >
-              ‹
-            </button>
-
-            <button
-              onClick={nextImage}
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-white text-5xl hover:scale-125 transition-all duration-300"
-            >
-              ›
-            </button>
-
-            {/* CLOSE */}
-            <button
-              onClick={closeModal}
-              className="absolute top-4 right-4 text-white text-3xl hover:rotate-90 transition-all duration-300"
-            >
-              ✕
-            </button>
-
-          </div>
-
         </div>
       )}
 
