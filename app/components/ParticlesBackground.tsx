@@ -12,18 +12,13 @@ export default function ParticlesBackground() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let width = window.innerWidth;
-    let height = window.innerHeight;
-
-    canvas.width = width;
-    canvas.height = height;
+    let animationFrameId: number;
 
     const mouse = {
-      x: width / 2,
-      y: height / 2,
+      x: 0,
+      y: 0,
+      radius: 120,
     };
-
-    const particles: Particle[] = [];
 
     class Particle {
       x: number;
@@ -33,13 +28,11 @@ export default function ParticlesBackground() {
       speedY: number;
 
       constructor() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-
+        this.x = Math.random() * window.innerWidth;
+        this.y = Math.random() * window.innerHeight;
         this.size = Math.random() * 2 + 1;
-
-        this.speedX = (Math.random() - 0.5) * 0.3;
-        this.speedY = (Math.random() - 0.5) * 0.3;
+        this.speedX = Math.random() * 1 - 0.5;
+        this.speedY = Math.random() * 1 - 0.5;
       }
 
       update() {
@@ -51,68 +44,70 @@ export default function ParticlesBackground() {
 
         const distance = Math.sqrt(dx * dx + dy * dy);
 
-        if (distance < 140) {
-          this.x -= dx * 0.002;
-          this.y -= dy * 0.002;
+        if (distance < mouse.radius) {
+          this.x -= dx / 20;
+          this.y -= dy / 20;
         }
 
-        if (this.x < 0) this.x = width;
-        if (this.x > width) this.x = 0;
+        if (this.x < 0 || this.x > window.innerWidth) {
+          this.speedX *= -1;
+        }
 
-        if (this.y < 0) this.y = height;
-        if (this.y > height) this.y = 0;
+        if (this.y < 0 || this.y > window.innerHeight) {
+          this.speedY *= -1;
+        }
       }
 
-      draw() {
-        if (!ctx) return;
-
+      draw(ctx: CanvasRenderingContext2D) {
         ctx.beginPath();
-
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-
-        ctx.fillStyle = "rgba(255,255,255,0.12)";
+        ctx.fillStyle = "rgba(255,255,255,0.5)";
         ctx.fill();
       }
     }
 
-    for (let i = 0; i < 120; i++) {
-      particles.push(new Particle());
-    }
+    let particles: Particle[] = [];
 
-    const animate = () => {
-      if (!ctx) return;
-
-      ctx.clearRect(0, 0, width, height);
-
-      particles.forEach((particle) => {
-        particle.update();
-        particle.draw();
-      });
-
-      requestAnimationFrame(animate);
+    const initParticles = () => {
+      particles = [];
+      for (let i = 0; i < 120; i++) {
+        particles.push(new Particle());
+      }
     };
 
-    animate();
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
 
-    const handleMouseMove = (e: MouseEvent) => {
+    resizeCanvas();
+    initParticles();
+
+    const mouseMoveHandler = (e: MouseEvent) => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
     };
 
-    const handleResize = () => {
-      width = window.innerWidth;
-      height = window.innerHeight;
+    window.addEventListener("mousemove", mouseMoveHandler);
+    window.addEventListener("resize", resizeCanvas);
 
-      canvas.width = width;
-      canvas.height = height;
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach((particle) => {
+        particle.update();
+        particle.draw(ctx); // ✅ CORREGIDO
+      });
+
+      animationFrameId = requestAnimationFrame(animate);
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("resize", handleResize);
+    animate();
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("resize", handleResize);
+      cancelAnimationFrame(animationFrameId);
+      window.removeEventListener("mousemove", mouseMoveHandler);
+      window.removeEventListener("resize", resizeCanvas);
     };
   }, []);
 
