@@ -75,14 +75,17 @@ export default function Home() {
     <main className="min-h-screen bg-black text-white overflow-hidden relative">
 
       {/* =========================
-          PARTICLES BACKGROUND
+          PARTICLES (AHORA SÍ EN HERO)
       ========================== */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
+      <div className="absolute inset-0 z-0">
         <ParticlesBackground />
       </div>
 
+      {/* OVERLAY PARA OSCURECER Y DAR PROFUNDIDAD */}
+      <div className="absolute inset-0 bg-black/40 z-10 pointer-events-none" />
+
       {/* BACKGROUND GLOW */}
-      <div className="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-white/5 blur-[180px] rounded-full pointer-events-none z-10" />
+      <div className="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-white/5 blur-[180px] rounded-full pointer-events-none z-20" />
 
       {/* =========================
                 NAVBAR
@@ -114,11 +117,9 @@ export default function Home() {
         id="inicio"
         data-anim="hero"
         ref={refs.hero}
-        className="relative z-10 min-h-screen flex items-center px-6"
+        className="relative z-30 min-h-screen flex items-center px-6"
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-zinc-950 to-black opacity-90" />
-
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center relative z-10">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
 
           <div>
             <img src="/logo.png" alt="Logo" className="w-32 mb-10 opacity-95" />
@@ -174,11 +175,7 @@ export default function Home() {
       {/* =========================
               GALERÍA
       ========================== */}
-      <section
-        data-anim="gallery"
-        ref={refs.gallery}
-        className="relative z-10 py-24 px-6 border-t border-zinc-900"
-      >
+      <section className="relative z-30 py-24 px-6 border-t border-zinc-900">
         <div className="max-w-7xl mx-auto">
 
           <div className="text-center mb-16">
@@ -208,12 +205,7 @@ export default function Home() {
       {/* =========================
               SOBRE
       ========================== */}
-      <section
-        id="sobre"
-        data-anim="about"
-        ref={refs.about}
-        className="relative z-10 py-32 px-6 border-t border-zinc-900"
-      >
+      <section className="relative z-30 py-32 px-6 border-t border-zinc-900">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-20">
 
           <img src="/demon.jpg" className="rounded-3xl grayscale" />
@@ -231,12 +223,7 @@ export default function Home() {
       {/* =========================
               SERVICIOS
       ========================== */}
-      <section
-        id="servicios"
-        data-anim="services"
-        ref={refs.services}
-        className="relative z-10 py-32 px-6 border-t border-zinc-900 bg-zinc-950"
-      >
+      <section className="relative z-30 py-32 px-6 border-t border-zinc-900 bg-zinc-950">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
 
           <div className="border border-zinc-800 p-10 rounded-3xl">
@@ -265,18 +252,11 @@ export default function Home() {
       {/* =========================
               FOOTER
       ========================== */}
-      <footer
-        id="contacto"
-        data-anim="footer"
-        ref={refs.footer}
-        className="relative z-10 py-14 border-t border-zinc-900 text-center text-zinc-500"
-      >
+      <footer className="relative z-30 py-14 border-t border-zinc-900 text-center text-zinc-500">
         Andrey Angarita Tattoo
       </footer>
 
-      {/* =========================
-              LIGHTBOX
-      ========================== */}
+      {/* LIGHTBOX */}
       {selected !== null && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center">
           <div className="absolute inset-0 bg-black/90" onClick={closeModal} />
