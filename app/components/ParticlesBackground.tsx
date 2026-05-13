@@ -61,7 +61,7 @@ export default function ParticlesBackground() {
       draw(ctx: CanvasRenderingContext2D) {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(255,255,255,0.5)";
+        ctx.fillStyle = "rgba(255,255,255,0.6)";
         ctx.fill();
       }
     }
@@ -76,12 +76,22 @@ export default function ParticlesBackground() {
     };
 
     const resizeCanvas = () => {
+      if (!canvas) return;
+
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
 
-    resizeCanvas();
-    initParticles();
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach((particle) => {
+        particle.update();
+        particle.draw(ctx);
+      });
+
+      animationFrameId = requestAnimationFrame(animate);
+    };
 
     const mouseMoveHandler = (e: MouseEvent) => {
       mouse.x = e.clientX;
@@ -91,18 +101,13 @@ export default function ParticlesBackground() {
     window.addEventListener("mousemove", mouseMoveHandler);
     window.addEventListener("resize", resizeCanvas);
 
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // 🔥 FIX CRÍTICO: inicialización en orden correcto
+    resizeCanvas();
 
-      particles.forEach((particle) => {
-        particle.update();
-        particle.draw(ctx); // ✅ CORREGIDO
-      });
-
-      animationFrameId = requestAnimationFrame(animate);
-    };
-
-    animate();
+    setTimeout(() => {
+      initParticles();
+      animate();
+    }, 0);
 
     return () => {
       cancelAnimationFrame(animationFrameId);
