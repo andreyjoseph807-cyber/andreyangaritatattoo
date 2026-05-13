@@ -74,13 +74,21 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-black text-white overflow-hidden relative">
 
-      {/* =========================
-          PARTICLES (AHORA SÍ EN HERO)
-      ========================== */}
-      <div className="absolute inset-0 z-0">
-        <ParticlesBackground />
-      </div>
+     {/* =========================
+    PARTICLES + MUSIC
+========================== */}
+<div className="absolute inset-0 z-0">
+  <ParticlesBackground />
 
+  <audio
+  autoPlay
+  loop
+  controls
+  className="fixed bottom-5 right-5 z-[999] opacity-70 hover:opacity-100"
+>
+  <source src="/ambient.mp3" type="audio/mpeg" />
+</audio> 
+</div>
       {/* OVERLAY PARA OSCURECER Y DAR PROFUNDIDAD */}
       <div className="absolute inset-0 bg-black/40 z-10 pointer-events-none" />
 
