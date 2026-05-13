@@ -36,35 +36,43 @@ export default function Home() {
     setSelected((selected - 1 + images.length) % images.length);
   };
 
-  useEffect(() => {
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") closeModal();
-      if (e.key === "ArrowRight") nextImage();
-      if (e.key === "ArrowLeft") prevImage();
-    };
+ useEffect(() => {
+  const handleKey = (e: KeyboardEvent) => {
+    if (e.key === "Escape") closeModal();
+    if (e.key === "ArrowRight") nextImage();
+    if (e.key === "ArrowLeft") prevImage();
+  };
 
-    window.addEventListener("keydown", handleKey);
-    return () => window.removeEventListener("keydown", handleKey);
-  }, [selected]);
+  window.addEventListener("keydown", handleKey);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const id = entry.target.getAttribute("data-anim");
+  return () => window.removeEventListener("keydown", handleKey);
+}, [selected]);
 
-          if (entry.isIntersecting && id) {
-            setVisible((prev) => ({
-              ...prev,
-              [id]: true,
-            }));
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
+useEffect(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const id = entry.target.getAttribute("data-anim");
 
-    useEffect(() => {
+        if (entry.isIntersecting && id) {
+          setVisible((prev) => ({
+            ...prev,
+            [id]: true,
+          }));
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  Object.values(refs).forEach((ref) => {
+    if (ref.current) observer.observe(ref.current);
+  });
+
+  return () => observer.disconnect();
+}, []);
+
+useEffect(() => {
   const audio = document.getElementById(
     "ambient-audio"
   ) as HTMLAudioElement | null;
@@ -93,13 +101,6 @@ export default function Home() {
   };
 }, []);
 
-    Object.values(refs).forEach((ref) => {
-      if (ref.current) observer.observe(ref.current);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <main className="min-h-screen bg-black text-white overflow-hidden relative">
 
@@ -109,14 +110,9 @@ export default function Home() {
 <div className="absolute inset-0 z-0">
   <ParticlesBackground />
 
- <audio
-  id="ambient-audio"
-  autoPlay
-  loop
-  muted
->
-  <source src="/ambient.mp3" type="audio/mpeg" />
-</audio> 
+  <audio id="ambient-audio" autoPlay loop muted>
+    <source src="/ambient.mp3" type="audio/mpeg" />
+  </audio>
 </div>
       {/* OVERLAY PARA OSCURECER Y DAR PROFUNDIDAD */}
       <div className="absolute inset-0 bg-black/40 z-10 pointer-events-none" />
