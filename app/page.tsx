@@ -224,7 +224,7 @@ export default function Home() {
                 className="relative group cursor-pointer rounded-3xl"
               >
                 {/* Glow FUERA del overflow-hidden — ahora sí se ve */}
-                <div className="absolute -inset-3 bg-white/20 blur-2xl opacity-0 group-hover:opacity-100 transition duration-500 rounded-3xl pointer-events-none z-0" />
+                <div className="absolute -inset-6 bg-white/40 blur-3xl opacity-0 group-hover:opacity-100 transition duration-500 rounded-3xl pointer-events-none z-0" />
 
                 {/* Contenedor interior con overflow-hidden para la imagen */}
                 <div className="relative overflow-hidden rounded-3xl border border-zinc-800 transition z-10">
