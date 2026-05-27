@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import ParticlesBackground from "./components/ParticlesBackground";
+import ReviewsSection from "./components/ReviewsSection";
 
 interface Particle {
   id: number;
@@ -403,6 +404,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* RESEÑAS */}
+        <ReviewsSection />
 
         {/* CONTACTO */}
         <section
