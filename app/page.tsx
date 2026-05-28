@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import ParticlesBackground from "./components/ParticlesBackground";
 import ReviewsSection from "@/app/components/ReviewsSection";
+
 interface Particle {
   id: number;
   x: number;
