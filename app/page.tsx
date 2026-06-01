@@ -184,13 +184,19 @@ export default function Home() {
         .animate-pulse-slow {
           animation: pulse-slow 2.5s ease-in-out infinite;
         }
-        html { scroll-behavior: smooth; }
+        html {
+          scroll-behavior: smooth;
+          overflow-x: hidden;
+        }
+        body {
+          overflow-x: hidden;
+        }
       `}</style>
 
-      <main className="min-h-screen bg-black text-white overflow-x-hidden relative">
+      <main className="min-h-screen bg-black text-white relative">
 
         {/* PARTICLES + MUSIC */}
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0 pointer-events-none">
           <ParticlesBackground />
           <audio id="ambient-audio" autoPlay loop muted>
             <source src="/ambient.mp3" type="audio/mpeg" />

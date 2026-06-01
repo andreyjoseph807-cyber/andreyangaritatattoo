@@ -14,6 +14,8 @@ export default function ParticlesBackground() {
 
     let animationFrameId: number;
 
+    const isMobile = window.innerWidth < 768;
+
     const mouse = {
       x: 0,
       y: 0,
@@ -39,14 +41,14 @@ export default function ParticlesBackground() {
         this.x += this.speedX;
         this.y += this.speedY;
 
-        const dx = mouse.x - this.x;
-        const dy = mouse.y - this.y;
-
-        const distance = Math.sqrt(dx * dx + dy * dy);
-
-        if (distance < mouse.radius) {
-          this.x -= dx / 20;
-          this.y -= dy / 20;
+        if (!isMobile) {
+          const dx = mouse.x - this.x;
+          const dy = mouse.y - this.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < mouse.radius) {
+            this.x -= dx / 20;
+            this.y -= dy / 20;
+          }
         }
 
         if (this.x < 0 || this.x > window.innerWidth) {
@@ -70,14 +72,14 @@ export default function ParticlesBackground() {
 
     const initParticles = () => {
       particles = [];
-      for (let i = 0; i < 120; i++) {
+      const count = isMobile ? 40 : 120;
+      for (let i = 0; i < count; i++) {
         particles.push(new Particle());
       }
     };
 
     const resizeCanvas = () => {
       if (!canvas) return;
-
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
@@ -101,7 +103,6 @@ export default function ParticlesBackground() {
     window.addEventListener("mousemove", mouseMoveHandler);
     window.addEventListener("resize", resizeCanvas);
 
-    // 🔥 FIX CRÍTICO: inicialización en orden correcto
     resizeCanvas();
 
     setTimeout(() => {
@@ -120,6 +121,7 @@ export default function ParticlesBackground() {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 z-0 pointer-events-none"
+      style={{ willChange: "transform" }}
     />
   );
 }
