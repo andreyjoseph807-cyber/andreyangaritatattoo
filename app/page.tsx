@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import ParticlesBackground from "./components/ParticlesBackground";
 import ReviewsSection from "./components/ReviewsSection";
+
 interface Particle {
   id: number;
   x: number;
@@ -36,6 +37,7 @@ export default function Home() {
 
   const [selected, setSelected] = useState<number | null>(null);
   const [visible, setVisible] = useState<Record<string, boolean>>({});
+  const [heroWords, setHeroWords] = useState<boolean[]>([false, false, false]);
 
   const heroRef = useRef<HTMLElement | null>(null);
   const galleryRef = useRef<HTMLElement | null>(null);
@@ -55,7 +57,13 @@ export default function Home() {
   const handleSplashClick = () => {
     if (exploding) return;
     setExploding(true);
-    setTimeout(() => setSplashDone(true), 900);
+    setTimeout(() => {
+      setSplashDone(true);
+      // Animar palabras del hero una por una
+      setTimeout(() => setHeroWords([true, false, false]), 300);
+      setTimeout(() => setHeroWords([true, true, false]), 700);
+      setTimeout(() => setHeroWords([true, true, true]), 1100);
+    }, 900);
   };
 
   useEffect(() => {
@@ -114,7 +122,7 @@ export default function Home() {
   }, []);
 
   const animClass = (key: string) =>
-    `transition-[opacity,transform] duration-700 ease-out will-change-transform ${
+    `transition-all duration-700 ease-out ${
       visible[key] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
     }`;
 
@@ -184,19 +192,13 @@ export default function Home() {
         .animate-pulse-slow {
           animation: pulse-slow 2.5s ease-in-out infinite;
         }
-        html {
-          scroll-behavior: smooth;
-          overflow-x: hidden;
-        }
-        body {
-          overflow-x: hidden;
-        }
+        html { scroll-behavior: smooth; }
       `}</style>
 
-      <main className="min-h-screen bg-black text-white relative">
+      <main className="min-h-screen bg-black text-white overflow-x-hidden relative">
 
         {/* PARTICLES + MUSIC */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute inset-0 z-0">
           <ParticlesBackground />
           <audio id="ambient-audio" autoPlay loop muted>
             <source src="/ambient.mp3" type="audio/mpeg" />
@@ -266,7 +268,18 @@ export default function Home() {
               </p>
 
               <h1 className="text-5xl sm:text-6xl md:text-8xl font-black leading-none mb-6 md:mb-8">
-                TATUAJES<br />CON<br />PROPÓSITO.
+                {["TATUAJES", "CON", "PROPÓSITO."].map((word, i) => (
+                  <span
+                    key={i}
+                    className="block transition-all duration-700 ease-out"
+                    style={{
+                      opacity: heroWords[i] ? 1 : 0,
+                      transform: heroWords[i] ? "translateY(0)" : "translateY(30px)",
+                    }}
+                  >
+                    {word}
+                  </span>
+                ))}
               </h1>
 
               <p className="text-zinc-400 text-base sm:text-lg leading-relaxed max-w-xl mb-8 md:mb-10">
