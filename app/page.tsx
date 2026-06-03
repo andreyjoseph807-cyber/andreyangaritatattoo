@@ -351,8 +351,7 @@ export default function Home() {
                         src={img.src}
                         alt={img.alt}
                         fill
-                        className="object-cover grayscale group-hover:scale-105 transition duration-500"
-                      />
+className="object-cover grayscale hover:grayscale-0 group-hover:scale-105 group-hover:grayscale-0 transition duration-700"                      />
                     </div>
                   </div>
                 </div>
