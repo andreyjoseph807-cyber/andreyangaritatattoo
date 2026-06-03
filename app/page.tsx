@@ -101,16 +101,24 @@ export default function Home() {
 
   useEffect(() => {
     const audio = document.getElementById("ambient-audio") as HTMLAudioElement | null;
-    const enableAudio = () => {
-      if (audio) {
-        audio.muted = false;
-        audio.volume = 0.35;
+   const enableAudio = () => {
+  if (audio) {
+    audio.muted = false;
+    audio.volume = 0.35;
+    audio.play().catch(() => {
+      // Si falla, intentar de nuevo al primer click
+      const retryOnClick = () => {
         audio.play().catch(() => {});
-      }
-      window.removeEventListener("click", enableAudio);
-      window.removeEventListener("mousemove", enableAudio);
-      window.removeEventListener("scroll", enableAudio);
-    };
+        window.removeEventListener("click", retryOnClick);
+      };
+      window.removeEventListener("click", retryOnClick);
+      window.addEventListener("click", retryOnClick);
+    });
+  }
+  window.removeEventListener("click", enableAudio);
+  window.removeEventListener("mousemove", enableAudio);
+  window.removeEventListener("scroll", enableAudio);
+};
     window.addEventListener("click", enableAudio);
     window.addEventListener("mousemove", enableAudio);
     window.addEventListener("scroll", enableAudio);
